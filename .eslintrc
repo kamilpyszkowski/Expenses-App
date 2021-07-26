@@ -1,0 +1,32 @@
+{
+	"extends": ["airbnb", "prettier"],
+	"parser": "babel-eslint",
+	"rules": {
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [".js", ".jsx"]
+			}
+		],
+		"indent": ["warn", "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
+		"no-tabs": 0,
+		"react/jsx-indent": [2, "tab"],
+		"react/jsx-indent-props": [2, "tab"],
+		"react/jsx-props-no-spreading": 0,
+		"import/prefer-default-export": 0,
+		"no-unused-vars": 0,
+		"no-console": 0
+	},
+	"ignorePatterns": ["!**/*", ".storybook/*"],
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"paths": ["src"]
+			}
+		}
+	},
+	"env": {
+		"browser": true,
+		"node": true
+	}
+}
