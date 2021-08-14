@@ -1,31 +1,35 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { removeItem as removeItemAction } from 'actions';
+import { useDispatch } from 'react-redux';
+import { removeItem } from 'actions';
 
-import Heading from 'components/atoms/Heading/Heading';
-import Button from 'components/atoms/Button/Button';
+import Heading from 'components/atoms/Heading';
+import Button from 'components/atoms/Button';
 
-import paint from 'assets/paint.svg';
-import heart from 'assets/heart.svg';
-import shopping from 'assets/shopping.svg';
-import car from 'assets/car.svg';
-import tshirt from 'assets/tshirt.svg';
-import computer from 'assets/computer.svg';
-import chemistry from 'assets/chemistry.svg';
-import trash from 'assets/trash.svg';
+import { icons } from 'utils';
 
-const icons = {
-	paint,
-	heart,
-	shopping,
-	car,
-	tshirt,
-	computer,
-	chemistry,
-	trash,
-};
+const itemAnimation = keyframes`
+	from {
+		opacity: 0;
+		transform: translateY(25%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+`;
+
+const removalAnimation = keyframes`
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+`;
 
 const StyledContainer = styled.li`
 	width: 100%;
@@ -34,10 +38,21 @@ const StyledContainer = styled.li`
 	align-items: center;
 	padding: 12px 0;
 	border-bottom: 1px solid ${({ theme }) => theme.color.gray200};
+	animation: ${({ isRemoved }) => (isRemoved ? removalAnimation : itemAnimation)} ease-in-out 0.4s;
+	background-color: ${({ theme }) => theme.color.gray100};
 
 	&:last-child {
 		border-bottom: 0;
 	}
+
+	${({ isRemoved }) =>
+		isRemoved &&
+		css`
+			~ ${StyledContainer} {
+				transition: transform 0.35s ease-in-out;
+				transform: translateY(-100%);
+			}
+		`}
 `;
 
 const StyledIconWrapper = styled.div`
@@ -83,26 +98,28 @@ const StyledIcon = styled.span`
 	height: 100%;
 `;
 
-const StyledTrashIcon = styled.span`
-	mask: url(${icons.trash}) 50%/75% no-repeat;
-	background-color: white;
-	display: block;
-	width: 30px;
-	height: 18px;
-`;
+const ListItem = ({ id, color, icon, name, value }) => {
+	const [isRemoved, setIsRemoved] = useState(false);
+	const dispatch = useDispatch();
 
-const ListItem = ({ id, color, icon, name, value, removeItem }) => (
-	<StyledContainer>
-		<StyledIconWrapper color={color}>
-			<StyledIcon icon={icon} />
-		</StyledIconWrapper>
-		<StyledHeading>{name}</StyledHeading>
-		<StyledValue>{value}</StyledValue>
-		<StyledButton sec onClick={() => removeItem(id)}>
-			<StyledTrashIcon />
-		</StyledButton>
-	</StyledContainer>
-);
+	const handleRemoval = () => {
+		setIsRemoved(true);
+		setTimeout(() => {
+			dispatch(removeItem(id));
+		}, 400);
+	};
+
+	return (
+		<StyledContainer isRemoved={isRemoved}>
+			<StyledIconWrapper color={color}>
+				<StyledIcon icon={icon} />
+			</StyledIconWrapper>
+			<StyledHeading>{name}</StyledHeading>
+			<StyledValue>{value}</StyledValue>
+			<StyledButton secondary onClick={handleRemoval} icon={icons.trash} />
+		</StyledContainer>
+	);
+};
 
 ListItem.propTypes = {
 	id: PropTypes.number.isRequired,
@@ -110,11 +127,6 @@ ListItem.propTypes = {
 	icon: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
-	removeItem: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-	removeItem: (id) => dispatch(removeItemAction(id)),
-});
-
-export default connect(null, mapDispatchToProps)(ListItem);
+export default ListItem;

@@ -2,9 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { icons } from 'assets/icons';
-
-import Input from 'components/atoms/Input/Input';
+import { icons } from 'utils';
 
 const StyledContainer = styled.div`
 	position: relative;
@@ -13,6 +11,7 @@ const StyledContainer = styled.div`
 	height: 42px;
 	border-radius: 50%;
 	overflow: hidden;
+	pointer-events: all;
 
 	&:last-child {
 		margin-right: 0;
@@ -27,6 +26,7 @@ const StyledMarker = styled.span`
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
+	transition: all 0.2s ease-in-out;
 
 	${({ name }) =>
 		name === 'icon' &&
@@ -49,7 +49,7 @@ const StyledMarker = styled.span`
 	}
 `;
 
-const StyledRadioInput = styled(Input)`
+const StyledRadioInput = styled.input`
 	width: 100%;
 	height: 100%;
 	opacity: 0;
@@ -73,32 +73,28 @@ const StyledRadioInput = styled(Input)`
 	}
 `;
 
-const PopupField = ({ callbackSave, callbackInput, callbackState, name, item }) => {
-	const handleChange = (e) => {
-		callbackSave(e);
-		callbackInput(e);
-	};
+const RadioButton = ({ item, itemType, register }) => {
+	const a = 'a';
+
 	return (
 		<StyledContainer>
 			<StyledRadioInput
-				onChange={(e) => handleChange(e)}
-				defaultChecked={callbackState[name] === item}
+				{...register(itemType)}
+				defaultChecked={false}
 				type="radio"
 				value={item}
-				name={name}
+				name={itemType}
 				id={item}
 			/>
-			<StyledMarker name={name} value={item} />
+			<StyledMarker name={itemType} value={item} />
 		</StyledContainer>
 	);
 };
 
-PopupField.propTypes = {
-	name: PropTypes.string.isRequired,
+RadioButton.propTypes = {
 	item: PropTypes.string.isRequired,
-	callbackSave: PropTypes.func.isRequired,
-	callbackInput: PropTypes.func.isRequired,
-	callbackState: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+	itemType: PropTypes.string.isRequired,
+	register: PropTypes.func.isRequired,
 };
 
-export default PopupField;
+export default RadioButton;

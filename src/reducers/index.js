@@ -1,8 +1,4 @@
 const initState = {
-	calendar: {
-		months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-		years: [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014],
-	},
 	items: [
 		{
 			id: 1,
@@ -10,6 +6,10 @@ const initState = {
 			color: 'red',
 			name: 'New computer',
 			value: '940',
+			date: {
+				month: 5,
+				year: 2021,
+			},
 		},
 		{
 			id: 2,
@@ -17,6 +17,10 @@ const initState = {
 			color: 'green',
 			name: 'Groceries',
 			value: '80',
+			date: {
+				month: 6,
+				year: 2021,
+			},
 		},
 		{
 			id: 3,
@@ -24,6 +28,10 @@ const initState = {
 			color: 'yellow',
 			name: 'New t-shirt',
 			value: '30',
+			date: {
+				month: 5,
+				year: 2021,
+			},
 		},
 		{
 			id: 4,
@@ -31,13 +39,21 @@ const initState = {
 			color: 'purple',
 			name: 'New brake pads',
 			value: '480',
+			date: {
+				month: 7,
+				year: 2021,
+			},
 		},
 		{
 			id: 5,
 			icon: 'computer',
-			color: 'green',
+			color: 'purple',
 			name: 'React courses',
-			value: '3520',
+			value: '1200',
+			date: {
+				month: 6,
+				year: 2021,
+			},
 		},
 		{
 			id: 6,
@@ -45,6 +61,10 @@ const initState = {
 			color: 'red',
 			name: 'Chewing gum',
 			value: '5',
+			date: {
+				month: 9,
+				year: 2021,
+			},
 		},
 		{
 			id: 7,
@@ -52,6 +72,10 @@ const initState = {
 			color: 'orange',
 			name: 'Date with Kylie',
 			value: '250',
+			date: {
+				month: 7,
+				year: 2021,
+			},
 		},
 		{
 			id: 8,
@@ -59,6 +83,10 @@ const initState = {
 			color: 'yellow',
 			name: 'Medicines',
 			value: '90',
+			date: {
+				month: 5,
+				year: 2021,
+			},
 		},
 	],
 };
@@ -67,12 +95,10 @@ const rootReducer = (state = initState, action) => {
 	switch (action.type) {
 		case 'REMOVE_ITEM':
 			return {
-				...state,
 				items: [...state.items.filter((item) => item.id !== action.payload.id)],
 			};
 		case 'ADD_ITEM':
 			return {
-				...state,
 				items: [...state.items, action.payload.newItem],
 			};
 		default:

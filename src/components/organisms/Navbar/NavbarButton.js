@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -8,7 +8,7 @@ import homeIcon from 'assets/home.svg';
 import overviewIcon from 'assets/overview.svg';
 import settingsIcon from 'assets/settings.svg';
 
-const NavLinkAnimation = keyframes`
+const LinkAnimation = keyframes`
     from {
         transform: scale(0.85);
     }
@@ -27,7 +27,7 @@ const StyledLabel = styled.span`
 	font-size: ${({ theme }) => theme.fontSize.s};
 `;
 
-const StyledNavLink = styled(NavLink)`
+const StyledLink = styled(Link)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -37,7 +37,7 @@ const StyledNavLink = styled(NavLink)`
 	padding: 8px 0;
 
 	&.active {
-		animation: ease-in ${NavLinkAnimation} 0.2s;
+		animation: ease-in ${LinkAnimation} 0.2s;
 		transform: scale(1);
 
 		&::before {
@@ -54,10 +54,10 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const NavbarButton = ({ path, label, icon }) => (
-	<StyledNavLink exact to={path} activeClassName="active">
+	<StyledLink exact to={path} activeClassName="active">
 		<StyledIcon icon={icon} />
 		<StyledLabel>{label}</StyledLabel>
-	</StyledNavLink>
+	</StyledLink>
 );
 
 NavbarButton.propTypes = {

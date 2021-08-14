@@ -1,27 +1,17 @@
-/* eslint-disable react/no-unused-state */
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate } from '@reach/router';
+import context from 'context';
+
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const monthNames = [
-	'january',
-	'february',
-	'march',
-	'april',
-	'may',
-	'june',
-	'july',
-	'august',
-	'september',
-	'october',
-	'november',
-	'december',
-];
+import { monthNames } from 'utils';
 
 const StyledContainer = styled.div`
 	display: flex;
 	align-items: ${({ secondary }) => (secondary ? 'flex-end' : 'flex-start')};
 `;
+
 const StyledItemWrapper = styled.div`
 	margin-right: 20px;
 	position: relative;
@@ -32,12 +22,13 @@ const StyledItemWrapper = styled.div`
 `;
 
 const StyledLabel = styled.label`
+	display: block;
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-	transition: all ease 0.3s;
+	transition: all ease-in-out 0.3s;
 	color: ${({ theme, secondary }) => (secondary ? theme.color.gray400 : theme.color.gray500)};
-	font-weight: ${({ theme, secondary }) => (secondary ? theme.fontWeight.bold : null)};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	font-size: ${({ theme, secondary }) => (secondary ? theme.fontSize.s : theme.fontSize.m)};
 
 	&::first-letter {
@@ -54,29 +45,38 @@ const StyledInput = styled.input`
 
 	&:checked ~ ${StyledLabel} {
 		color: ${({ theme, secondary }) => (secondary ? theme.color.gray500 : theme.color.blue)};
-		font-size: ${({ theme, secondary }) => (secondary ? theme.fontSize.l : theme.fontSize.xl)};
-		font-weight: ${({ theme }) => theme.fontWeight.bold};
+		transform: scale(1.45);
+		padding: 0 20px;
 	}
 `;
 
-const ItemSelector = ({ currentValue, itemList, name, secondary }) => {
-	const [selectedItem, setSelection] = useState(currentValue);
+const ItemSelector = ({ itemsList, itemType, secondary }) => {
+	const { contextDate, setContextDate } = useContext(context);
+	const navigate = useNavigate();
+
+	const handleChange = (e) => {
+		setContextDate((prevcontextDate) => ({
+			...prevcontextDate,
+			[itemType]: parseInt(e.target.value, 10),
+		}));
+		if (itemType === 'month') navigate(`/${monthNames[e.target.value]}`);
+	};
 
 	return (
 		<StyledContainer secondary={secondary}>
-			{itemList.map((item) => (
+			{itemsList.map((item) => (
 				<StyledItemWrapper key={item}>
 					<StyledInput
 						type="radio"
-						name={name}
+						name={itemType}
 						id={item}
 						secondary={secondary}
 						value={item}
-						defaultChecked={currentValue === item}
-						onChange={(e) => setSelection(e.currentTarget.value)}
+						defaultChecked={contextDate[itemType] === item}
+						onChange={handleChange}
 					/>
 					<StyledLabel forHtml={item} secondary={secondary}>
-						{name === 'month' ? monthNames[item] : item}
+						{itemType === 'month' ? monthNames[item] : item}
 					</StyledLabel>
 				</StyledItemWrapper>
 			))}
@@ -85,9 +85,8 @@ const ItemSelector = ({ currentValue, itemList, name, secondary }) => {
 };
 
 ItemSelector.propTypes = {
-	itemList: PropTypes.arrayOf(PropTypes.number).isRequired,
-	currentValue: PropTypes.number.isRequired,
-	name: PropTypes.string.isRequired,
+	itemsList: PropTypes.arrayOf(PropTypes.number).isRequired,
+	itemType: PropTypes.string.isRequired,
 	secondary: PropTypes.bool,
 };
 

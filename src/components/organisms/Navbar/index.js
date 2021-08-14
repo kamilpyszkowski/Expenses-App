@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 import { faHome, faChartLine, faCogs } from '@fortawesome/free-solid-svg-icons';
 
-import NavbarButton from 'components/organisms/Navbar/NavbarButton/NavbarButton';
+import NavbarButton from 'components/organisms/Navbar/NavbarButton';
 
 const StyledContainer = styled.nav`
 	min-width: 40vw;
 	padding: 8px 20px;
 	border-radius: 20px;
 	overflow: hidden;
-	box-shadow: 0 25px 15px -20px ${({ theme }) => theme.color.alphaBlack2}, 0 0 15px 0 ${({ theme }) => theme.color.alphaBlack1};
+	box-shadow: 0 25px 15px -20px ${({ theme }) => theme.color.alphaBlack2},
+		0 0 15px 0 ${({ theme }) => theme.color.alphaBlack1};
 	position: absolute;
 	bottom: 30px;
 	left: 50%;

@@ -9,21 +9,27 @@ const StyledInput = styled.input`
 	background-color: ${({ theme }) => theme.color.gray100};
 	padding: 16px 24px;
 	font-size: ${({ theme }) => theme.fontSize.s};
+	outline: none;
 
 	&::placeholder {
 		color: ${({ theme }) => theme.color.gray400};
 	}
 
 	&:focus {
-		outline: 2px solid ${({ theme }) => theme.color.blue};
+		box-shadow: inset 0 0 0 2px ${({ theme }) => theme.color.blue};
 	}
 `;
 
-const Input = ({ type, name, ...props }) => <StyledInput {...props} type={type} name={name} id={name} />;
+const Input = (props) => {
+	const { register, name, type } = props;
+
+	return <StyledInput {...props} {...register(name)} id={name} type={type} />;
+};
 
 Input.propTypes = {
 	type: PropTypes.string,
 	name: PropTypes.string.isRequired,
+	register: PropTypes.node.isRequired,
 };
 
 Input.defaultProps = {

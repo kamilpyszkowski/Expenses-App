@@ -20,7 +20,7 @@ export const MainTheme = {
 		orange: 'hsl(20, 100%, 70%)',
 	},
 	fontWeight: {
-		light: 300,
+		regular: 300,
 		bold: 600,
 	},
 	fontSize: {

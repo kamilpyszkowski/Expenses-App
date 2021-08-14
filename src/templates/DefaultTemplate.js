@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Navbar from 'components/organisms/Navbar/Navbar';
+import Navbar from 'components/organisms/Navbar';
 
 const StyledContainer = styled.main`
 	display: grid;

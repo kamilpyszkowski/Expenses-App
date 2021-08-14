@@ -1,24 +1,48 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { Router, Redirect } from '@reach/router';
+import { Provider as StoreProvider } from 'react-redux';
+import Context from 'context';
 import store from 'store';
 
-import HomePage from 'pages/HomePage';
-import OverviewPage from 'pages/OverviewPage';
+import { getDate, monthNames } from 'utils';
+
+import Dashboard from 'pages/Dashboard';
 
 import StyledTemplate from 'templates/StyledTemplate';
 
-const Root = () => (
-	<Provider store={store}>
-		<StyledTemplate>
-			<BrowserRouter>
-				<Switch>
-					<Route path="/overview" component={OverviewPage} />
-					<Route path="/" component={HomePage} />
-				</Switch>
-			</BrowserRouter>
-		</StyledTemplate>
-	</Provider>
-);
+const initialDate = {
+	month: getDate('month'),
+	year: getDate('year'),
+};
+
+const Root = () => {
+	const [contextDate, setContextDate] = useState(initialDate);
+
+	const currentLocation = window.location.pathname.substring(1);
+	const currentMonth = monthNames[contextDate.month];
+
+	useEffect(() => {
+		if (currentLocation !== '') {
+			setContextDate((prevDate) => ({
+				...prevDate,
+				month: monthNames.indexOf(currentLocation),
+			}));
+		}
+	}, [currentLocation]);
+
+	return (
+		<StoreProvider store={store}>
+			<Context.Provider value={{ contextDate, setContextDate }}>
+				<StyledTemplate>
+					<Router>
+						<Redirect from="/" to={`/${currentMonth}`} noThrow />
+						<Dashboard path="/" />
+						<Dashboard path="/:month" />
+					</Router>
+				</StyledTemplate>
+			</Context.Provider>
+		</StoreProvider>
+	);
+};
 
 export default Root;
