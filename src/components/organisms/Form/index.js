@@ -181,14 +181,13 @@ const Form = () => {
 		);
 	};
 
-	const monthName = monthNames[contextDate.month][0].toUpperCase() + monthNames[contextDate.month].substring(1);
-
 	return (
 		<StyledContainer>
 			{isFormDisabled && (
 				<StyledFormDisabled>
 					<StyledParagraph>
-						Unfortunately {monthName} {contextDate.year} is over. <br /> You can&apos;t add new expense here 😢
+						Unfortunately {monthNames[contextDate.month]} {contextDate.year} is over. <br /> You can&apos;t add new expense
+						here 😢
 					</StyledParagraph>
 				</StyledFormDisabled>
 			)}

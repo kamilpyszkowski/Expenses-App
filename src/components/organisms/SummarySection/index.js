@@ -1,12 +1,26 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import context from 'context';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { MainTheme } from 'themes/MainTheme';
 
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 import { getSummary, getDate, monthNames } from 'utils';
+
+import placeholder from 'assets/calendar-placeholder.svg';
+
+const placeholderAnimation = keyframes`
+	from {
+		opacity: 0;
+		transform: scale(0.8)
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1)
+	}
+`;
 
 const StyledContainer = styled.section`
 	width: 100%;
@@ -34,6 +48,42 @@ const StyledItemContainer = styled.div`
 		grid-column: 1 / 4;
 		background-color: transparent;
 	}
+
+	${({ currentDateSelected }) =>
+		currentDateSelected &&
+		css`
+			grid-column: 1 / 4;
+			position: relative;
+
+			~ ${StyledItemContainer} {
+				display: none;
+			}
+
+			&::before {
+				content: '';
+				mask: url(${placeholder}) center/contain no-repeat;
+				background-color: ${({ theme }) => theme.color.gray300};
+				width: 100%;
+				min-height: 220px;
+				display: block;
+				position: absolute;
+				top: 200%;
+				animation: ${placeholderAnimation} ease-in-out 0.5s;
+			}
+
+			&::after {
+				content: "I've got nothing to say. Let me look at another month!";
+				width: 100%;
+				text-align: center;
+				display: block;
+				margin: 25px 0;
+				font-size: ${({ theme }) => theme.fontSize.xl};
+				color: ${({ theme }) => theme.color.gray300};
+				position: absolute;
+				top: calc(200% + 220px);
+				animation: ${placeholderAnimation} ease-in-out 0.5s;
+			}
+		`}
 `;
 
 const StyledItemValue = styled.span`
@@ -69,7 +119,7 @@ const SummarySection = () => {
 	const summaryContextMonth = getSummary(contextMonthItems);
 	const calculatedPercentage = ((summaryContextMonth / summaryThisMonth) * 100).toFixed(2);
 
-	const labels = ['This month', 'Context month'];
+	const labels = [monthNames[contextDate.month], monthNames[currentDate.month]];
 
 	const chartOptions = {
 		responsive: true,
@@ -116,7 +166,7 @@ const SummarySection = () => {
 
 	return (
 		<StyledContainer>
-			<StyledItemContainer>
+			<StyledItemContainer currentDateSelected={parsedCurrentDate === parsedContextDate}>
 				<StyledItemValue>{`$ ${summaryThisMonth}`}</StyledItemValue>
 				<StyledItemLabel>Summary in this month</StyledItemLabel>
 			</StyledItemContainer>
@@ -129,11 +179,7 @@ const SummarySection = () => {
 				<StyledItemLabel>{`Percentage compared to ${monthNames[contextDate.month]}`}</StyledItemLabel>
 			</StyledItemContainer>
 			<StyledItemContainer>
-				{parsedCurrentDate !== parsedContextDate ? (
-					<Bar data={chartData} options={chartOptions} />
-				) : (
-					<Doughnut data={{ labels: labels[0], dataset: contextMonthItems.map((item) => datasetTemplate(item)) }} />
-				)}
+				{parsedCurrentDate !== parsedContextDate ? <Bar data={chartData} options={chartOptions} /> : null}
 			</StyledItemContainer>
 		</StyledContainer>
 	);

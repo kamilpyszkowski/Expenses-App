@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Navbar from 'components/organisms/Navbar';
+import Settings from 'components/organisms/Settings';
 
 const StyledContainer = styled.main`
 	display: grid;
@@ -14,12 +15,17 @@ const StyledContainer = styled.main`
 	grid-template-rows: auto 1fr;
 `;
 
-const DefaultTemplate = ({ children }) => (
-	<StyledContainer>
-		<Navbar />
-		{children}
-	</StyledContainer>
-);
+const DefaultTemplate = ({ children }) => {
+	const [areSettingsVisible, setSettingsVisible] = useState(false);
+
+	return (
+		<StyledContainer>
+			<Navbar toggleSettings={setSettingsVisible} />
+			{children}
+			{areSettingsVisible && <Settings toggleSettings={setSettingsVisible} />}
+		</StyledContainer>
+	);
+};
 
 DefaultTemplate.propTypes = {
 	children: PropTypes.arrayOf(PropTypes.object).isRequired,

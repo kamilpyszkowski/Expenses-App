@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="13.06728mm"
+   height="13.06728mm"
+   viewBox="0 0 13.06728 13.06728"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   sodipodi:docname="close.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="4.4114651"
+     inkscape:cx="24.595003"
+     inkscape:cy="31.508806"
+     inkscape:window-width="1920"
+     inkscape:window-height="1012"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(142.26293,-140.8454)">
+    <circle
+       id="path920"
+       style="fill:#356ce9;stroke:#000000;stroke-width:0.264583"
+       cx="-140.22719"
+       cy="157.08424"
+       r="0" />
+    <circle
+       id="path922"
+       style="fill:#356ce9;stroke:#000000;stroke-width:0.264583"
+       cx="-140.22719"
+       cy="157.08424"
+       r="0" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.265;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -141.81568,141.29265 12.17279,12.17279"
+       id="path988"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.265;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -141.81568,153.46544 12.17279,-12.17279"
+       id="path988-3"
+       inkscape:transform-center-x="-12.488855"
+       inkscape:transform-center-y="-6.2438885"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

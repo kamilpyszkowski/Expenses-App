@@ -39,7 +39,6 @@ const StyledContainer = styled.li`
 	padding: 12px 0;
 	border-bottom: 1px solid ${({ theme }) => theme.color.gray200};
 	animation: ${({ isRemoved }) => (isRemoved ? removalAnimation : itemAnimation)} ease-in-out 0.4s;
-	background-color: ${({ theme }) => theme.color.gray100};
 
 	&:last-child {
 		border-bottom: 0;

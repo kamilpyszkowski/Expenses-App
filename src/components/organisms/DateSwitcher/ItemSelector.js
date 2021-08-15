@@ -30,10 +30,6 @@ const StyledLabel = styled.label`
 	color: ${({ theme, secondary }) => (secondary ? theme.color.gray400 : theme.color.gray500)};
 	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	font-size: ${({ theme, secondary }) => (secondary ? theme.fontSize.s : theme.fontSize.m)};
-
-	&::first-letter {
-		text-transform: uppercase;
-	}
 `;
 
 const StyledInput = styled.input`
@@ -62,6 +58,8 @@ const ItemSelector = ({ itemsList, itemType, secondary }) => {
 		if (itemType === 'month') navigate(`/${monthNames[e.target.value]}`);
 	};
 
+	console.log(contextDate[itemType]);
+
 	return (
 		<StyledContainer secondary={secondary}>
 			{itemsList.map((item) => (
@@ -72,7 +70,7 @@ const ItemSelector = ({ itemsList, itemType, secondary }) => {
 						id={item}
 						secondary={secondary}
 						value={item}
-						defaultChecked={contextDate[itemType] === item}
+						defaultChecked={item === contextDate[itemType]}
 						onChange={handleChange}
 					/>
 					<StyledLabel forHtml={item} secondary={secondary}>

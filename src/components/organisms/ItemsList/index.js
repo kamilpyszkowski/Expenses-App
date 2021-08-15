@@ -33,15 +33,29 @@ const StyledContainer = styled.ul`
 	${({ isEmpty }) =>
 		isEmpty &&
 		css`
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+
 			&::before {
 				content: '';
-				mask: url(${placeholder}) center/75% no-repeat;
+				mask: url(${placeholder}) center/contain no-repeat;
 				background-color: ${({ theme }) => theme.color.gray300};
-				position: absolute;
-				top: 0;
-				left: 0;
 				width: 100%;
-				height: 100%;
+				min-height: 220px;
+				display: block;
+				animation: ${placeholderAnimation} ease-in-out 0.5s;
+			}
+
+			&::after {
+				content: "Look's like you don't have any expenses! Lucky you!";
+				width: 100%;
+				text-align: center;
+				display: block;
+				margin: 25px 0;
+				font-size: ${({ theme }) => theme.fontSize.xl};
+				color: ${({ theme }) => theme.color.gray300};
 				animation: ${placeholderAnimation} ease-in-out 0.5s;
 			}
 		`}

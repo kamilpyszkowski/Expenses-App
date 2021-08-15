@@ -1,54 +1,45 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import { faHome, faChartLine, faCogs } from '@fortawesome/free-solid-svg-icons';
-
-import NavbarButton from 'components/organisms/Navbar/NavbarButton';
+import logo from 'assets/logo.svg';
 
 const StyledContainer = styled.nav`
 	min-width: 40vw;
-	padding: 8px 20px;
+	padding: 18px 20px;
 	border-radius: 20px;
 	overflow: hidden;
-	box-shadow: 0 25px 15px -20px ${({ theme }) => theme.color.alphaBlack2},
-		0 0 15px 0 ${({ theme }) => theme.color.alphaBlack1};
+	background-color: ${({ theme }) => theme.color.gray100};
 	position: absolute;
 	bottom: 30px;
 	left: 50%;
 	transform: translateX(-50%);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 `;
 
-const StyledListWrapper = styled.ul`
-	display: flex;
+const StyledLogo = styled.span`
+	content: url(${logo});
 	height: 100%;
 `;
 
-const StyledListItem = styled.li`
-	width: calc(100% / 3);
-	border-right: 1px solid ${({ theme }) => theme.color.gray200};
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	&:last-child {
-		border-right: none;
-	}
+const StyledButton = styled.button`
+	border-radius: 20px;
+	background-color: ${({ theme }) => theme.color.gray200};
+	padding: 15px 20px;
+	font-weight: ${({ theme }) => theme.fontWeight.bold}; ;
 `;
 
-const Navbar = () => (
+const Navbar = ({ toggleSettings }) => (
 	<StyledContainer>
-		<StyledListWrapper>
-			<StyledListItem>
-				<NavbarButton path="/" icon={faHome} label="Home" />
-			</StyledListItem>
-			<StyledListItem>
-				<NavbarButton path="/overview" icon={faChartLine} label="Overview" />
-			</StyledListItem>
-			<StyledListItem>
-				<NavbarButton path="/settings" icon={faCogs} label="Settings" />
-			</StyledListItem>
-		</StyledListWrapper>
+		<StyledLogo />
+		<StyledButton onClick={() => toggleSettings(true)}>Settings</StyledButton>
 	</StyledContainer>
 );
+
+Navbar.propTypes = {
+	toggleSettings: PropTypes.func.isRequired,
+};
 
 export default Navbar;
