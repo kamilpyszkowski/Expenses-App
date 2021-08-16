@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.js": "/static/js/main.03501f4a.chunk.js",
+    "main.js.map": "/static/js/main.03501f4a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c8b5e785.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c8b5e785.js.map",
+    "static/js/2.3c86400b.chunk.js": "/static/js/2.3c86400b.chunk.js",
+    "static/js/2.3c86400b.chunk.js.map": "/static/js/2.3c86400b.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.3c86400b.chunk.js.LICENSE.txt": "/static/js/2.3c86400b.chunk.js.LICENSE.txt",
+    "static/media/calendar-placeholder.3ca33692.svg": "/static/media/calendar-placeholder.3ca33692.svg",
+    "static/media/car.0f828968.svg": "/static/media/car.0f828968.svg",
+    "static/media/chemistry.37831714.svg": "/static/media/chemistry.37831714.svg",
+    "static/media/close.16d17dbe.svg": "/static/media/close.16d17dbe.svg",
+    "static/media/computer.16e15d56.svg": "/static/media/computer.16e15d56.svg",
+    "static/media/heart.034ab291.svg": "/static/media/heart.034ab291.svg",
+    "static/media/list-placeholder.07f1dcca.svg": "/static/media/list-placeholder.07f1dcca.svg",
+    "static/media/logo.8a5a1cd3.svg": "/static/media/logo.8a5a1cd3.svg",
+    "static/media/paint.849956e0.svg": "/static/media/paint.849956e0.svg",
+    "static/media/shopping.0415469d.svg": "/static/media/shopping.0415469d.svg",
+    "static/media/tick.9844bb96.svg": "/static/media/tick.9844bb96.svg",
+    "static/media/trash.667f51f1.svg": "/static/media/trash.667f51f1.svg",
+    "static/media/tshirt.af272425.svg": "/static/media/tshirt.af272425.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c8b5e785.js",
+    "static/js/2.3c86400b.chunk.js",
+    "static/js/main.03501f4a.chunk.js"
+  ]
+}
