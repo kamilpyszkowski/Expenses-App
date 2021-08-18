@@ -1,26 +1,24 @@
 <h1 align="center">
-  AMS Elektronik
+  MyExpenses
 </h1>
 
 <div align="center">Kamil Pyszkowski</div>
 
 ## 💫 Descriptiion
 
-AMS Elektronik website built with React and GatsbyJS. Application uses programmatic pages rendering with data provided by headless CMS and is integrated with Sendgrid API to handle contact form.
+MyExpenses is a web appplication to collect and compare monthly spendings. It uses local storage and Redux to manage data. What's more app uses ChartJS library for data visualisation.
 	
 ## 🚀 Features and used technologies
 	
 * React,
 * GatsbyJS
 * Styled Components
-* Sendgrid API integration
+* Data visualisation
 * GraphQL
-* Responsive webdesign
-* SEO friendly
-* Programmatically rendered pages
-* Headless CMS integration
+* Redux
+* Local storage
 
 ## 🔥 Preview
 
-This website was created for commercial purpose and at the moment is under approval so it's not published. However it can be [previewed here](https://www.ams-elektronik-preview.netlify.app "AMS Elektronik preview page").
+App can be [previewed here](https://www.ams-elektronik-preview.netlify.app "AMS Elektronik preview page"). At the moment app is filled with some dummy data for presentation purpose.
 
