@@ -20,5 +20,5 @@ MyExpenses is a web appplication to collect and compare monthly spendings. It us
 
 ## 🔥 Preview
 
-App can be [previewed here](https://www.ams-elektronik-preview.netlify.app "AMS Elektronik preview page"). At the moment app is filled with some dummy data for presentation purpose.
+App can be [previewed here](https://www.myexpenses-app.netlify.app "MyExpenses preview page"). At the moment app is filled with some dummy data for presentation purpose.
 
