@@ -4,7 +4,7 @@
 
 <div align="center">Kamil Pyszkowski</div>
 
-## 💫 Descriptiion
+## 💫 Description
 
 MyExpenses is a web appplication to collect and compare monthly spendings. It uses local storage and Redux to manage data. What's more app uses ChartJS library for data visualisation.
 	
